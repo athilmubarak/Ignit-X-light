@@ -24,6 +24,7 @@
     src="./assets/images/Particle Wave.gif"
     loading="lazy"
     class="bg-cover w-full h-full rounded-lg"
+    style="filter: grayscale(1);"
   />
 
   <div
@@ -168,10 +169,7 @@
   </div>
 </div>
 
-<div
-  class="flex justify-center items-center bg-white body-padding"
-  id="amc"
->
+<div class="flex justify-center items-center bg-white body-padding" id="amc">
   <div class="border-2 border-primary rounded-lg mx-4 p-2 flex flex-col">
     <div class="flex items-center px-4">
       <h3 class="heading">AMC & Networking</h3>
@@ -187,6 +185,55 @@
           class="flex justify-center text-black font-semibold mt-2 service-name text-center"
         >
           {{ item?.name | uppercase }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flex flex-col bg-slate-600 body-padding" id="contact_us">
+  <div class="flex flex-col mt-4" style="padding-left: 5%">
+    <div class="flex items-center">
+      <h3 class="heading text-white">Get In Touch</h3>
+      <div class="line bg-primary"></div>
+    </div>
+  </div>
+  <div class="flex items-center justify-center">
+    <div class="flex justify-center flex-1">
+      <p class="text-justify text-sm text-white leading-8" style="width: 70%;">
+        Ready to embark on a journey of technological excellence and seamless
+        connectivity? Our team at IgniteX is here to answer your queries,
+        discuss your IT needs, and explore possibilities for enhancing your
+        business efficiency or securing your spaces. Whether it's sourcing
+        top-notch IT products, implementing cutting-edge security systems, or
+        elevating your gaming experience, we're just a message or call away.
+        Let's collaborate to ignite innovation and transform your vision into
+        reality. Get in touch with us today, and let's build a future of
+        connectivity together!
+      </p>
+    </div>
+
+    <div class="flex flex-col justify-center items-center flex-1 px-4 py-2">
+      <div class="flex flex-col bg-white rounded p-4 form-container">
+        <form [formGroup]="contact_form">
+          <mat-form-field class="flex w-full">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" />
+          </mat-form-field>
+          <mat-form-field class="flex w-full">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" />
+          </mat-form-field>
+          <mat-form-field class="flex w-full">
+            <mat-label>Message</mat-label>
+            <textarea matInput formControlName="message" rows="7"></textarea>
+          </mat-form-field>
+        </form>
+        <div class="flex justify-end">
+          <button mat-raised-button>
+            <mat-icon>send</mat-icon>
+            Send Message
+          </button>
         </div>
       </div>
     </div>

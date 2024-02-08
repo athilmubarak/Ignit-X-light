@@ -4,6 +4,7 @@ import { Service } from './interface/service.types';
 import { nav_menus } from './constants/nav-menus.constant';
 import { service } from './constants/services.constant';
 import { amc } from './constants/amc.constant';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,10 @@ export class AppComponent implements OnInit {
   services!: Service[];
   amc!: Service[];
 
-  constructor() {}
+  //Forms
+  contact_form!: FormGroup;
+
+  constructor(private form_builder: FormBuilder) {}
 
   ngOnInit(): void {
     this.nav_menus = [...nav_menus];
@@ -24,6 +28,12 @@ export class AppComponent implements OnInit {
     this.services = [...service];
 
     this.amc = [...amc];
+
+    this.contact_form = this.form_builder.group({
+      name: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      message: new FormControl('', [Validators.required]),
+    });
   }
 
   /**
