@@ -1,0 +1,56 @@
+@import "./styles/animation.styles.scss";
+
+.company-name {
+  font-size: 4rem;
+  animation: moveInLeft 3s ease-out;
+
+  &-x {
+    font-size: 6rem;
+    text-shadow: 12px 0px 0px #795c344f;
+  }
+}
+
+.motto {
+  font-size: 24px;
+  text-align: center;
+  animation: moveInRight 3s ease-out;
+}
+
+.heading {
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  line-height: 4rem;
+}
+
+.line {
+  width: 10%;
+  height: 3px;
+  margin-left: 10px;
+}
+
+.about-us-content {
+  width: 70%;
+}
+
+.z-1 {
+  z-index: 1 !important;
+}
+
+.body-padding {
+  padding: 10px 50px;
+}
+
+.service-card {
+  height: 320px;
+  width: 300px;
+
+  img {
+    width: 230px;
+    height: 230px;
+    border-radius: 10px;
+  }
+
+  .service-name {
+    width: 230px;
+  }
+}
