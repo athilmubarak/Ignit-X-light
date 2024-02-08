@@ -24,7 +24,7 @@
     src="./assets/images/Particle Wave.gif"
     loading="lazy"
     class="bg-cover w-full h-full rounded-lg"
-    style="filter: grayscale(1);"
+    style="filter: grayscale(1)"
   />
 
   <div
@@ -200,7 +200,7 @@
   </div>
   <div class="flex items-center justify-center">
     <div class="flex justify-center flex-1">
-      <p class="text-justify text-sm text-white leading-8" style="width: 70%;">
+      <p class="text-justify text-sm text-white leading-8" style="width: 70%">
         Ready to embark on a journey of technological excellence and seamless
         connectivity? Our team at IgniteX is here to answer your queries,
         discuss your IT needs, and explore possibilities for enhancing your
@@ -230,12 +230,45 @@
           </mat-form-field>
         </form>
         <div class="flex justify-end">
-          <button mat-raised-button>
+          <button mat-raised-button class="submit">
             <mat-icon>send</mat-icon>
             Send Message
           </button>
         </div>
       </div>
     </div>
+  </div>
+  <div class="flex justify-center items-center mt-4 p-4">
+    <button
+      class="social-icons"
+      (click)="onClickSocialIcons('location')"
+      matTooltip="Location"
+    >
+      <i class="fa fa-map-marker"></i>
+    </button>
+
+    <button
+      class="social-icons"
+      (click)="onClickSocialIcons('mail_to')"
+      matTooltip="Mail"
+    >
+      <i class="fa fa-envelope-o"></i>
+    </button>
+
+    <button
+      class="social-icons"
+      (click)="onClickSocialIcons('phone')"
+      matTooltip="Phone Number"
+    >
+      <i class="fa fa-phone"></i>
+    </button>
+
+    <button
+      class="social-icons"
+      (click)="onClickSocialIcons('instagram')"
+      matTooltip="Instagram"
+    >
+      <i class="fa fa-instagram"></i>
+    </button>
   </div>
 </div>

@@ -60,8 +60,25 @@
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
-button {
-  background-color: #f5a738 !important;
-  color: #fff !important;
-  border-radius: 50px !important;
+button.submit {
+  background-color: #f5a738;
+  color: #fff;
+  border-radius: 50px;
+}
+
+button.social-icons {
+  color: #f5a738;
+  border: 1px solid #f5a738;
+  padding: 3px 5px;
+  border-radius: 50%;
+  margin: 0px 5px;
+  font-size: 1.5rem;
+  width: 50px;
+  height: 50px;
+  transition: ease-in-out 1s;
+
+  &:hover {
+    color: #fff;
+    background-color: #f5a738;
+  }
 }

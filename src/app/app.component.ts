@@ -4,7 +4,12 @@ import { Service } from './interface/service.types';
 import { nav_menus } from './constants/nav-menus.constant';
 import { service } from './constants/services.constant';
 import { amc } from './constants/amc.constant';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -48,6 +53,33 @@ export class AppComponent implements OnInit {
       const bodyRect = document.body.getBoundingClientRect();
       const offset = elementRect.top - bodyRect.top - 50;
       window.scrollTo({ top: offset, behavior: 'smooth' });
+    }
+  }
+
+  /**
+   * while on clicking social buttons
+   *
+   * @param type
+   */
+  onClickSocialIcons(type: 'location' | 'mail_to' | 'phone' | 'instagram') {
+    switch (type) {
+      case 'location':
+        break;
+
+      case 'mail_to':
+        window.location.href = `mailto:info@ignitextec.com`;
+        break;
+
+      case 'phone':
+        window.location.href = 'tel:0568968905';
+        break;
+
+      case 'instagram':
+        window.open(
+          'https://www.instagram.com/ignitex_it?igsh=c21ob2F4c3B3b2Nn',
+          '_blank'
+        );
+        break;
     }
   }
 }
