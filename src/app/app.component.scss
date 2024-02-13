@@ -1,17 +1,14 @@
 @import "./styles/animation.styles.scss";
 
 .company-name {
-  font-size: 4rem;
   animation: moveInLeft 3s ease-out;
 
   &-x {
-    font-size: 6rem;
     text-shadow: 12px 0px 0px #795c344f;
   }
 }
 
 .motto {
-  font-size: 24px;
   text-align: center;
   animation: moveInRight 3s ease-out;
 }
@@ -52,6 +49,7 @@
 
   .service-name {
     width: 230px;
+    color: #fff;
   }
 }
 
@@ -61,14 +59,14 @@
 }
 
 button.submit {
-  background-color: #f5a738;
+  background-color: #4169e1;
   color: #fff;
   border-radius: 50px;
 }
 
 button.social-icons {
-  color: #f5a738;
-  border: 1px solid #f5a738;
+  color: #fff;
+  border: 1px solid #fff;
   padding: 3px 5px;
   border-radius: 50%;
   margin: 0px 5px;
@@ -79,6 +77,32 @@ button.social-icons {
 
   &:hover {
     color: #fff;
-    background-color: #f5a738;
+    background-color: #4169e1;
+    border-color: #4169e1;
   }
+}
+
+.shapes {
+  position: relative;
+  border-radius: 40% 48% 38% 77%/78% 80% 30% 41%;
+  width: 200px;
+  height: 200px;
+  background-color: #d3d4d7;
+  opacity: 0.1;
+
+  &-right {
+    right: 125px;
+    bottom: -125px;
+  }
+
+  &-left {
+    left: -450px;
+    top: -125px;
+  }
+}
+
+.bg-filter-custom {
+  backdrop-filter: blur(50px) saturate(100%);
+  -webkit-backdrop-filter: blur(50px) saturate(100%);
+  background-color: #ffffff30;
 }

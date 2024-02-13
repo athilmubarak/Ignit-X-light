@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   nav_menus!: Menu[];
   services!: Service[];
   amc!: Service[];
+  menu_opened: boolean = false;
 
   //Forms
   contact_form!: FormGroup;
@@ -53,6 +54,9 @@ export class AppComponent implements OnInit {
       const bodyRect = document.body.getBoundingClientRect();
       const offset = elementRect.top - bodyRect.top - 50;
       window.scrollTo({ top: offset, behavior: 'smooth' });
+      if (this.menu_opened) {
+        this.menu_opened = false;
+      }
     }
   }
 
@@ -64,6 +68,10 @@ export class AppComponent implements OnInit {
   onClickSocialIcons(type: 'location' | 'mail_to' | 'phone' | 'instagram') {
     switch (type) {
       case 'location':
+        window.open(
+          'https://www.google.com/maps/dir/11.0015281,75.9579352/IGNITEX+INFORMATION+TECHNOLOGY+LLC/@16.8944854,43.8523226,4z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3e5f437da3f6745d:0xa9db0f0beef1d510!2m2!1d55.2827909!2d25.2179236?hl=en-ae&entry=ttu',
+          '_blank'
+        );
         break;
 
       case 'mail_to':

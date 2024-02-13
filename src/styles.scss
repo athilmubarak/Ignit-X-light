@@ -46,4 +46,10 @@ $ignite-x-light-theme: mat.define-light-theme(
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-@import '~font-awesome/css/font-awesome.css';
+@import "~font-awesome/css/font-awesome.css";
+
+body {
+  background: #051447;
+background: -webkit-radial-gradient(circle, #051447 0%, #101010 100%);
+background: radial-gradient(circle, #051447 0%, #101010 100%);
+}
