@@ -90,4 +90,21 @@ export class AppComponent implements OnInit {
         break;
     }
   }
+
+  /**
+   * for sending mail
+   *
+   * @returns
+   */
+  sentMail() {
+    if (this.contact_form.invalid) {
+      return;
+    }
+
+    window.location.href = `mailto:info@ignitextec.com?subject=${encodeURIComponent(
+      this.contact_form.get('name')?.value
+    )}&body=${encodeURIComponent(this.contact_form.get('message')?.value)}`;
+
+    this.contact_form.reset();
+  }
 }
