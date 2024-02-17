@@ -1,300 +1,311 @@
-<div
-  class="flex text-primary items-center shadow p-4 sticky top-0 z-1"
-  style="backdrop-filter: blur(5px)"
->
-  <div class="flex flex-1">
-    <div class="flex items-center text-primary font-bold text-md">
-      <img src="./assets/images/logo.jpg" alt="Logo" style="width: 50px" />
+<mat-drawer-container hasBackdrop="true" autoFocus="false">
+  <mat-drawer #drawer mode="over" position="end">
+    <div class="flex justify-end">
+      <button mat-icon-button (click)="drawer.close()">
+        <mat-icon class="text-white"> close </mat-icon>
+      </button>
     </div>
-  </div>
-  <div class="md:flex flex-1 justify-evenly hidden">
+
+    <div class="flex flex-col w-full p-2">
+      <div
+        class="text-primary text-lg font-bold cursor-pointer ease-in-out duration-200 hover:scale-110"
+        *ngFor="let item of nav_menus"
+        (click)="onClickMenu(item, drawer)"
+      >
+        {{ item?.name }}
+      </div>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
     <div
-      class="text-primary text-lg font-bold cursor-pointer ease-in-out duration-200 hover:scale-110"
-      *ngFor="let item of nav_menus"
-      (click)="onClickMenu(item)"
+      class="flex text-primary items-center shadow p-4 fixed w-full top-0 z-1"
+      style="backdrop-filter: blur(5px)"
     >
-      {{ item?.name }}
-    </div>
-  </div>
-  <div class="flex md:hidden">
-    <button mat-icon-button (click)="menu_opened = !menu_opened">
-      <mat-icon class="text-white">
-        {{ menu_opened ? "close" : "menu" }}
-      </mat-icon>
-    </button>
-  </div>
-</div>
-
-<div
-  class="flex flex-col p-4 sticky top-0 z-1 ease-in-out duration-200"
-  style="backdrop-filter: blur(5px)"
-  *ngIf="menu_opened"
->
-  <div
-    class="text-primary text-lg font-bold cursor-pointer ease-in-out duration-200 hover:scale-110"
-    *ngFor="let item of nav_menus"
-    (click)="onClickMenu(item)"
-  >
-    {{ item?.name }}
-  </div>
-</div>
-
-<div
-  class="flex w-full h-full justify-center items-center p-4"
-  style="height: 80vh"
-  id="home"
->
-  <img
-    src="./assets/images/Particle Wave.gif"
-    loading="lazy"
-    class="bg-cover w-full h-full rounded-lg"
-    style="filter: hue-rotate(45deg)"
-  />
-
-  <div
-    class="absolute flex flex-col text-white justify-center items-center ml-2"
-    style="width: 50%"
-  >
-    <div class="flex justify-center items-center company-name text-8xl">
-      <div class="flex">IGNITE</div>
-      <div class="flex company-name-x text-9xl">X</div>
-    </div>
-    <div class="flex justify justify-center items-center motto text-2xl">
-      Powering Progress, Connecting Possibilities. Your One-Stop Hub for
-      Cutting-Edge IT Solutions, Security Systems, and Gaming Thrills!
-    </div>
-  </div>
-</div>
-
-<div
-  class="flex flex-col w-full h-full md:body-padding my-2"
-  style="padding-left: 10%"
-  id="about_us"
->
-  <div class="flex flex-col">
-    <div class="flex items-center">
-      <h3 class="heading text-white">About Us</h3>
-      <div class="line bg-primary"></div>
-    </div>
-    <p class="text-white font-normal">
-      Operating in the premium product segment pf the market and founded by Dan
-      Blizerian, the company's <q>quality-first</q> approach is fundamental to
-      the brand and its products.
-    </p>
-  </div>
-
-  <div class="flex flex-col md:flex-row items-center justify-center mt-2">
-    <div class="flex flex-1 justify-center items-center p-4">
-      <img
-        src="./assets/svg/about-us.svg"
-        alt="about us"
-        loading="lazy"
-        style="height: 300px; backdrop-filter: blur(5px) saturate(2.2)"
-        class="shadow-md rounded-lg"
-      />
-    </div>
-    <div class="flex flex-1 justify-center items-center">
-      <p class="text-justify text-white about-us-content">
-        A global lifestyle brand unlike any other, IGNITE-X combines premium
-        quality ingredients with an unprecedented level of ambition, innovation
-        and an uncompromising standard of excellence. Inspired by CEO and
-        founder, Dan Blizerian, IGNITE-X has positioned itself as the gold
-        standard and industry expert in Nicotine, Spirits and supported with a
-        premium apparel line for an active lifestyle.
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="flex justify-center items-center md:body-padding" id="service">
-  <div class="border-2 border-primary rounded-lg mx-4 p-2 flex flex-col">
-    <div class="flex items-center px-4">
-      <h3 class="heading text-white">What We Do</h3>
-      <div class="line bg-primary"></div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-4">
-      <div
-        class="grid justify-center items-center service-card ease-in-out duration-200 hover:scale-105 m-4"
-        *ngFor="let item of services"
-      >
-        <img [src]="item?.imageURL" loading="lazy" />
+      <div class="flex flex-1">
+        <div class="flex items-center text-primary font-bold text-md">
+          <img src="./assets/images/logo.jpg" alt="Logo" style="width: 50px" />
+        </div>
+      </div>
+      <div class="md:flex flex-1 justify-evenly hidden">
         <div
-          class="flex justify-center text-black font-semibold mt-2 service-name text-center"
+          class="text-primary text-lg font-bold cursor-pointer ease-in-out duration-200 hover:scale-110"
+          *ngFor="let item of nav_menus"
+          (click)="onClickMenu(item, drawer)"
         >
-          {{ item?.name | uppercase }}
+          {{ item?.name }}
         </div>
       </div>
+      <div class="flex md:hidden">
+        <button mat-icon-button (click)="drawer.open()">
+          <mat-icon class="text-white"> menu </mat-icon>
+        </button>
+      </div>
     </div>
-  </div>
-</div>
 
-<div
-  class="flex flex-col w-full h-full md:body-padding my-2"
-  style="padding-left: 10%"
->
-  <div class="flex flex-col">
-    <div class="flex items-center">
-      <h3 class="heading text-white">Our Mission</h3>
-      <div class="line bg-primary"></div>
-    </div>
-  </div>
-
-  <div class="flex items-center flex-col md:flex-row justify-center mt-2">
-    <div class="flex flex-1 justify-center items-center">
-      <p class="text-justify about-us-content text-white">
-        Empowering businesses with seamless technology solutions, safeguarding
-        environments through advanced security systems, and enhancing
-        entertainment experiences with top-notch gaming gear. At IgniteX, we
-        ignite success, connectivity, and joy in every endeavor.
-      </p>
-    </div>
-    <div class="flex flex-1 justify-center items-center p-4">
+    <div
+      class="flex w-full h-full justify-center items-center p-4"
+      style="height: 80vh"
+      id="home"
+    >
       <img
-        src="./assets/svg/mission.svg"
-        alt="our mission"
+        src="./assets/images/Particle Wave.gif"
         loading="lazy"
-        style="height: 300px; backdrop-filter: blur(5px) saturate(1.2)"
-        class="shadow-md rounded-lg"
+        class="bg-cover w-full h-full rounded-lg"
+        style="filter: hue-rotate(45deg)"
       />
-      <div class="shapes hidden md:flex shapes-right"></div>
-    </div>
-  </div>
-</div>
 
-<div
-  class="flex flex-col w-full h-full md:body-padding my-2"
-  style="padding-left: 10%"
->
-  <div class="flex flex-col">
-    <div class="flex items-center">
-      <h3 class="heading text-white">Our Vision</h3>
-      <div class="line bg-primary"></div>
-    </div>
-  </div>
-
-  <div class="flex items-center flex-col md:flex-row justify-center mt-2">
-    <div class="flex flex-1 justify-center items-center p-4">
-      <img
-        src="./assets/svg/vision.svg"
-        alt="our vision"
-        loading="lazy"
-        style="height: 300px; backdrop-filter: blur(5px) saturate(1.2)"
-        class="shadow-md rounded-lg"
-      />
-      <div class="shapes hidden md:flex shapes-left"></div>
-    </div>
-    <div class="flex flex-1 justify-center items-center">
-      <p class="text-justify about-us-content text-white">
-        To be the forefront catalyst of technological evolution, creating a
-        world where businesses thrive with efficiency, security is a
-        non-negotiable standard, and entertainment is elevated to new heights.
-        IgniteX envisions a future where innovation knows no bounds, and
-        connectivity is the driving force behind progress.
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="flex justify-center items-center md:body-padding" id="amc">
-  <div class="border-2 border-primary rounded-lg mx-4 p-2 flex flex-col">
-    <div class="flex items-center px-4">
-      <h3 class="heading text-white">AMC & Networking</h3>
-      <div class="line bg-primary"></div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       <div
-        class="grid justify-center rounded-lg items-center service-card ease-in-out duration-200 hover:scale-105 m-4"
-        *ngFor="let item of amc"
+        class="absolute flex flex-col text-white justify-center items-center ml-2"
+        style="width: 50%"
       >
-        <img [src]="item?.imageURL" loading="lazy" />
-        <div
-          class="flex justify-center text-black font-semibold mt-2 service-name text-center"
+        <div class="flex justify-center items-center company-name text-8xl">
+          <div class="flex">IGNITE</div>
+          <div class="flex company-name-x text-9xl">X</div>
+        </div>
+        <div class="flex justify justify-center items-center motto text-2xl">
+          Powering Progress, Connecting Possibilities. Your One-Stop Hub for
+          Cutting-Edge IT Solutions, Security Systems, and Gaming Thrills!
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="flex flex-col w-full h-full md:body-padding my-2"
+      style="padding-left: 10%"
+      id="about_us"
+    >
+      <div class="flex flex-col">
+        <div class="flex items-center">
+          <h3 class="heading text-white">About Us</h3>
+          <div class="line bg-primary"></div>
+        </div>
+        <p class="text-white font-normal">
+          Operating in the premium product segment pf the market and founded by
+          Dan Blizerian, the company's <q>quality-first</q> approach is
+          fundamental to the brand and its products.
+        </p>
+      </div>
+
+      <div class="flex flex-col md:flex-row items-center justify-center mt-2">
+        <div class="flex flex-1 justify-center items-center p-4">
+          <img
+            src="./assets/svg/about-us.svg"
+            alt="about us"
+            loading="lazy"
+            style="height: 300px; backdrop-filter: blur(5px) saturate(2.2)"
+            class="shadow-md rounded-lg"
+          />
+        </div>
+        <div class="flex flex-1 justify-center items-center">
+          <p class="text-justify text-white about-us-content">
+            A global lifestyle brand unlike any other, IGNITE-X combines premium
+            quality ingredients with an unprecedented level of ambition,
+            innovation and an uncompromising standard of excellence. Inspired by
+            CEO and founder, Dan Blizerian, IGNITE-X has positioned itself as
+            the gold standard and industry expert in Nicotine, Spirits and
+            supported with a premium apparel line for an active lifestyle.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-center items-center md:body-padding" id="service">
+      <div class="border-2 border-primary rounded-lg mx-4 p-2 flex flex-col">
+        <div class="flex items-center px-4">
+          <h3 class="heading text-white">What We Do</h3>
+          <div class="line bg-primary"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-4">
+          <div
+            class="grid justify-center items-center service-card ease-in-out duration-200 hover:scale-105 m-4"
+            *ngFor="let item of services"
+          >
+            <img [src]="item?.imageURL" loading="lazy" />
+            <div
+              class="flex justify-center text-black font-semibold mt-2 service-name text-center"
+            >
+              {{ item?.name | uppercase }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="flex flex-col w-full h-full md:body-padding my-2"
+      style="padding-left: 10%"
+    >
+      <div class="flex flex-col">
+        <div class="flex items-center">
+          <h3 class="heading text-white">Our Mission</h3>
+          <div class="line bg-primary"></div>
+        </div>
+      </div>
+
+      <div class="flex items-center flex-col md:flex-row justify-center mt-2">
+        <div class="flex flex-1 justify-center items-center">
+          <p class="text-justify about-us-content text-white">
+            Empowering businesses with seamless technology solutions,
+            safeguarding environments through advanced security systems, and
+            enhancing entertainment experiences with top-notch gaming gear. At
+            IgniteX, we ignite success, connectivity, and joy in every endeavor.
+          </p>
+        </div>
+        <div class="flex flex-1 justify-center items-center p-4">
+          <img
+            src="./assets/svg/mission.svg"
+            alt="our mission"
+            loading="lazy"
+            style="height: 300px; backdrop-filter: blur(5px) saturate(1.2)"
+            class="shadow-md rounded-lg"
+          />
+          <div class="shapes hidden md:flex shapes-right"></div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="flex flex-col w-full h-full md:body-padding my-2"
+      style="padding-left: 10%"
+    >
+      <div class="flex flex-col">
+        <div class="flex items-center">
+          <h3 class="heading text-white">Our Vision</h3>
+          <div class="line bg-primary"></div>
+        </div>
+      </div>
+
+      <div class="flex items-center flex-col md:flex-row justify-center mt-2">
+        <div class="flex flex-1 justify-center items-center p-4">
+          <img
+            src="./assets/svg/vision.svg"
+            alt="our vision"
+            loading="lazy"
+            style="height: 300px; backdrop-filter: blur(5px) saturate(1.2)"
+            class="shadow-md rounded-lg"
+          />
+          <div class="shapes hidden md:flex shapes-left"></div>
+        </div>
+        <div class="flex flex-1 justify-center items-center">
+          <p class="text-justify about-us-content text-white">
+            To be the forefront catalyst of technological evolution, creating a
+            world where businesses thrive with efficiency, security is a
+            non-negotiable standard, and entertainment is elevated to new
+            heights. IgniteX envisions a future where innovation knows no
+            bounds, and connectivity is the driving force behind progress.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-center items-center md:body-padding" id="amc">
+      <div class="border-2 border-primary rounded-lg mx-4 p-2 flex flex-col">
+        <div class="flex items-center px-4">
+          <h3 class="heading text-white">AMC & Networking</h3>
+          <div class="line bg-primary"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div
+            class="grid justify-center rounded-lg items-center service-card ease-in-out duration-200 hover:scale-105 m-4"
+            *ngFor="let item of amc"
+          >
+            <img [src]="item?.imageURL" loading="lazy" />
+            <div
+              class="flex justify-center text-black font-semibold mt-2 service-name text-center"
+            >
+              {{ item?.name | uppercase }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col md:body-padding" id="contact_us">
+      <div class="flex flex-col mt-4" style="padding-left: 5%">
+        <div class="flex items-center">
+          <h3 class="heading text-white">Get In Touch</h3>
+          <div class="line bg-primary"></div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row items-center justify-center">
+        <div class="flex justify-center flex-1">
+          <p class="text-justify text-white leading-8" style="width: 70%">
+            Ready to embark on a journey of technological excellence and
+            seamless connectivity? Our team at IgniteX is here to answer your
+            queries, discuss your IT needs, and explore possibilities for
+            enhancing your business efficiency or securing your spaces. Whether
+            it's sourcing top-notch IT products, implementing cutting-edge
+            security systems, or elevating your gaming experience, we're just a
+            message or call away. Let's collaborate to ignite innovation and
+            transform your vision into reality. Get in touch with us today, and
+            let's build a future of connectivity together!
+          </p>
+        </div>
+
+        <div class="flex flex-col justify-center items-center flex-1 px-4 py-2">
+          <div
+            class="flex flex-col bg-filter-custom rounded p-4 form-container"
+          >
+            <form [formGroup]="contact_form">
+              <mat-form-field class="flex w-full">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" />
+              </mat-form-field>
+              <mat-form-field class="flex w-full">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" />
+              </mat-form-field>
+              <mat-form-field class="flex w-full">
+                <mat-label>Message</mat-label>
+                <textarea
+                  matInput
+                  formControlName="message"
+                  rows="7"
+                ></textarea>
+              </mat-form-field>
+            </form>
+            <div class="flex justify-end">
+              <button mat-raised-button class="submit" (click)="sentMail()">
+                <mat-icon>send</mat-icon>
+                Send Message
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-center items-center mt-4 p-4">
+        <button
+          class="social-icons"
+          (click)="onClickSocialIcons('location')"
+          matTooltip="Location"
         >
-          {{ item?.name | uppercase }}
-        </div>
+          <i class="fa fa-map-marker"></i>
+        </button>
+
+        <button
+          class="social-icons"
+          (click)="onClickSocialIcons('mail_to')"
+          matTooltip="Mail"
+        >
+          <i class="fa fa-envelope-o"></i>
+        </button>
+
+        <button
+          class="social-icons"
+          (click)="onClickSocialIcons('phone')"
+          matTooltip="Phone Number"
+        >
+          <i class="fa fa-phone"></i>
+        </button>
+
+        <button
+          class="social-icons"
+          (click)="onClickSocialIcons('instagram')"
+          matTooltip="Instagram"
+        >
+          <i class="fa fa-instagram"></i>
+        </button>
       </div>
     </div>
-  </div>
-</div>
-
-<div class="flex flex-col md:body-padding" id="contact_us">
-  <div class="flex flex-col mt-4" style="padding-left: 5%">
-    <div class="flex items-center">
-      <h3 class="heading text-white">Get In Touch</h3>
-      <div class="line bg-primary"></div>
-    </div>
-  </div>
-  <div class="flex flex-col md:flex-row items-center justify-center">
-    <div class="flex justify-center flex-1">
-      <p class="text-justify text-white leading-8" style="width: 70%">
-        Ready to embark on a journey of technological excellence and seamless
-        connectivity? Our team at IgniteX is here to answer your queries,
-        discuss your IT needs, and explore possibilities for enhancing your
-        business efficiency or securing your spaces. Whether it's sourcing
-        top-notch IT products, implementing cutting-edge security systems, or
-        elevating your gaming experience, we're just a message or call away.
-        Let's collaborate to ignite innovation and transform your vision into
-        reality. Get in touch with us today, and let's build a future of
-        connectivity together!
-      </p>
-    </div>
-
-    <div class="flex flex-col justify-center items-center flex-1 px-4 py-2">
-      <div class="flex flex-col bg-filter-custom rounded p-4 form-container">
-        <form [formGroup]="contact_form">
-          <mat-form-field class="flex w-full">
-            <mat-label>Name</mat-label>
-            <input matInput formControlName="name" />
-          </mat-form-field>
-          <mat-form-field class="flex w-full">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="email" />
-          </mat-form-field>
-          <mat-form-field class="flex w-full">
-            <mat-label>Message</mat-label>
-            <textarea matInput formControlName="message" rows="7"></textarea>
-          </mat-form-field>
-        </form>
-        <div class="flex justify-end">
-          <button mat-raised-button class="submit" (click)="sentMail()">
-            <mat-icon>send</mat-icon>
-            Send Message
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="flex justify-center items-center mt-4 p-4">
-    <button
-      class="social-icons"
-      (click)="onClickSocialIcons('location')"
-      matTooltip="Location"
-    >
-      <i class="fa fa-map-marker"></i>
-    </button>
-
-    <button
-      class="social-icons"
-      (click)="onClickSocialIcons('mail_to')"
-      matTooltip="Mail"
-    >
-      <i class="fa fa-envelope-o"></i>
-    </button>
-
-    <button
-      class="social-icons"
-      (click)="onClickSocialIcons('phone')"
-      matTooltip="Phone Number"
-    >
-      <i class="fa fa-phone"></i>
-    </button>
-
-    <button
-      class="social-icons"
-      (click)="onClickSocialIcons('instagram')"
-      matTooltip="Instagram"
-    >
-      <i class="fa fa-instagram"></i>
-    </button>
-  </div>
-</div>
+  </mat-drawer-content>
+</mat-drawer-container>

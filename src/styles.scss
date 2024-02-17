@@ -48,8 +48,14 @@ $ignite-x-light-theme: mat.define-light-theme(
 
 @import "~font-awesome/css/font-awesome.css";
 
-body {
+body,
+mat-drawer-content,
+mat-drawer {
   background: #051447;
-background: -webkit-radial-gradient(circle, #051447 0%, #101010 100%);
-background: radial-gradient(circle, #051447 0%, #101010 100%);
+  background: -webkit-radial-gradient(circle, #051447 0%, #101010 100%);
+  background: radial-gradient(circle, #051447 0%, #101010 100%);
+}
+
+mat-drawer {
+  width: 50vw;
 }

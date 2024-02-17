@@ -10,6 +10,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,6 @@ export class AppComponent implements OnInit {
   nav_menus!: Menu[];
   services!: Service[];
   amc!: Service[];
-  menu_opened: boolean = false;
 
   //Forms
   contact_form!: FormGroup;
@@ -46,16 +46,17 @@ export class AppComponent implements OnInit {
    * to scroll to block
    *
    * @param menu
+   * @param drawer
    */
-  onClickMenu(menu: Menu) {
+  onClickMenu(menu: Menu, drawer: MatDrawer) {
     const element = document.getElementById(menu.element_ref);
     if (element) {
       const elementRect = element.getBoundingClientRect();
       const bodyRect = document.body.getBoundingClientRect();
       const offset = elementRect.top - bodyRect.top - 50;
       window.scrollTo({ top: offset, behavior: 'smooth' });
-      if (this.menu_opened) {
-        this.menu_opened = false;
+      if (drawer.opened) {
+        drawer.close();
       }
     }
   }

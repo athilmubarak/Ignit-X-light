@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatInputModule,
     MatIconModule,
     MatTooltipModule,
+    MatSidenavModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
