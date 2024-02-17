@@ -42,14 +42,21 @@
   width: 300px;
 
   img {
-    width: 230px;
-    height: 230px;
-    border-radius: 10px;
+    height: 320px;
+    width: 300px;
   }
 
   .service-name {
-    width: 230px;
+    width: 100%;
+    height: 67px;
     color: #fff;
+    position: relative;
+    top: -75px;
+    text-align: center;
+    backdrop-filter: blur(10px) brightness(0.5);
+    padding: 5px;
+    display: flex;
+    align-items: center;
   }
 }
 

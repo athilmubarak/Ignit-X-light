@@ -48,7 +48,7 @@
     src="./assets/images/Particle Wave.gif"
     loading="lazy"
     class="bg-cover w-full h-full rounded-lg"
-    style="filter: grayscale(1)"
+    style="filter: hue-rotate(45deg)"
   />
 
   <div
@@ -114,7 +114,7 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-4">
       <div
-        class="grid p-4 justify-center rounded-lg items-center service-card bg-filter-custom ease-in-out duration-200 hover:scale-105 shadow-md m-4"
+        class="grid justify-center items-center service-card ease-in-out duration-200 hover:scale-105 m-4"
         *ngFor="let item of services"
       >
         <img [src]="item?.imageURL" loading="lazy" />
@@ -203,7 +203,7 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       <div
-        class="grid p-4 justify-center bg-white rounded-lg items-center service-card bg-filter-custom ease-in-out duration-200 hover:scale-105 shadow-md m-4"
+        class="grid justify-center rounded-lg items-center service-card ease-in-out duration-200 hover:scale-105 m-4"
         *ngFor="let item of amc"
       >
         <img [src]="item?.imageURL" loading="lazy" />
