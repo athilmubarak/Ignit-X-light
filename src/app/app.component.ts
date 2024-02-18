@@ -11,17 +11,29 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDrawer } from '@angular/material/sidenav';
+import { Subscription, interval } from 'rxjs';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('500ms', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [animate('500ms', style({ opacity: 0 }))]),
+    ]),
+  ],
 })
 export class AppComponent implements OnInit {
   //Variables
   nav_menus!: Menu[];
   services!: Service[];
   amc!: Service[];
+  subscription!: Subscription;
 
   //Forms
   contact_form!: FormGroup;
@@ -33,12 +45,18 @@ export class AppComponent implements OnInit {
 
     this.services = [...service];
 
-    this.amc = [...amc];
-
     this.contact_form = this.form_builder.group({
       name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       message: new FormControl('', [Validators.required]),
+    });
+
+    this.amc = amc.slice(0, 3);
+
+    this.subscription = interval(5000).subscribe({
+      next: () => {
+        this.nextOrPrevious('next');
+      },
     });
   }
 
@@ -107,5 +125,34 @@ export class AppComponent implements OnInit {
     )}&body=${encodeURIComponent(this.contact_form.get('message')?.value)}`;
 
     this.contact_form.reset();
+  }
+
+  nextOrPrevious(type: 'next' | 'previous') {
+    let amc_values = [...amc];
+    let deviceWidth = window.innerWidth;
+    let value = deviceWidth <= 768 ? 1 : 3;
+    let current_index = amc_values.findIndex((x) => x.id == this.amc[0].id);
+    this.amc = [];
+    setTimeout(() => {
+      if (type == 'next') {
+        if (current_index + value === amc.length) {
+          current_index = 0;
+        } else {
+          current_index += value;
+        }
+      } else {
+        if (current_index - value < 0) {
+          current_index = amc.length - value;
+        } else {
+          current_index -= value;
+        }
+      }
+
+      this.amc = amc_values.slice(current_index, current_index + 3);
+    }, 500);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
