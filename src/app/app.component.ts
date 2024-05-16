@@ -10,9 +10,15 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { MatDrawer } from '@angular/material/sidenav';
 import { Subscription, interval } from 'rxjs';
-import { trigger, transition, style, animate } from '@angular/animations';
+import {
+  trigger,
+  transition,
+  style,
+  animate,
+  state,
+  keyframes,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +32,52 @@ import { trigger, transition, style, animate } from '@angular/animations';
       ]),
       transition(':leave', [animate('500ms', style({ opacity: 0 }))]),
     ]),
+    trigger('openClose', [
+      state(
+        'open',
+        style({
+          height: '100%',
+          opacity: 1,
+        })
+      ),
+      state(
+        'closed',
+        style({
+          height: '0%',
+          opacity: 0.5,
+        })
+      ),
+      transition('open => closed', [
+        animate(
+          '3s ease',
+          keyframes([
+            style({ height: '0%', offset: 0 }),
+            style({ height: '30%', offset: 0.2 }),
+            style({ height: '60%', offset: 0.5 }),
+            style({ height: '90%', offset: 0.8 }),
+            style({ height: '100%', offset: 1.0 }),
+          ])
+        ),
+      ]),
+      transition('closed => open', [
+        animate(
+          '3s ease',
+          keyframes([
+            style({ height: '100%', offset: 0 }),
+            style({ height: '90%', offset: 0.1 }),
+            style({ height: '80%', offset: 0.2 }),
+            style({ height: '70%', offset: 0.3 }),
+            style({ height: '60%', offset: 0.4 }),
+            style({ height: '50%', offset: 0.5 }),
+            style({ height: '40%', offset: 0.6 }),
+            style({ height: '30%', offset: 0.7 }),
+            style({ height: '20%', offset: 0.8 }),
+            style({ height: '10%', offset: 0.9 }),
+            style({ height: '0%', offset: 1.0 }),
+          ])
+        ),
+      ]),
+    ]),
   ],
 })
 export class AppComponent implements OnInit {
@@ -34,6 +86,7 @@ export class AppComponent implements OnInit {
   services!: Service[];
   amc!: Service[];
   subscription!: Subscription;
+  show_menu: boolean = false;
 
   //Forms
   contact_form!: FormGroup;
@@ -64,17 +117,17 @@ export class AppComponent implements OnInit {
    * to scroll to block
    *
    * @param menu
-   * @param drawer
    */
-  onClickMenu(menu: Menu, drawer: MatDrawer) {
+  onClickMenu(menu: Menu) {
     const element = document.getElementById(menu.element_ref);
     if (element) {
       const elementRect = element.getBoundingClientRect();
       const bodyRect = document.body.getBoundingClientRect();
       const offset = elementRect.top - bodyRect.top - 50;
       window.scrollTo({ top: offset, behavior: 'smooth' });
-      if (drawer.opened) {
-        drawer.close();
+
+      if (this.show_menu) {
+        this.show_menu = false;
       }
     }
   }
@@ -129,22 +182,20 @@ export class AppComponent implements OnInit {
 
   nextOrPrevious(type: 'next' | 'previous') {
     let amc_values = [...amc];
-    let deviceWidth = window.innerWidth;
-    let value = deviceWidth <= 768 ? 1 : 3;
     let current_index = amc_values.findIndex((x) => x.id == this.amc[0].id);
     this.amc = [];
     setTimeout(() => {
       if (type == 'next') {
-        if (current_index + value === amc.length) {
+        if (current_index + 3 === amc.length) {
           current_index = 0;
         } else {
-          current_index += value;
+          current_index += 3;
         }
       } else {
-        if (current_index - value < 0) {
-          current_index = amc.length - value;
+        if (current_index - 3 < 0) {
+          current_index = amc.length - 3;
         } else {
-          current_index -= value;
+          current_index -= 3;
         }
       }
 
